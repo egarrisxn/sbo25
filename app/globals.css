@@ -134,10 +134,8 @@
 }
 
 @theme inline {
-  --font-heading: var(--font-rubik);
-
   --font-sans: var(--font-poppins), ui-sans-serif;
-  --font-serif: var(--font-noto-serif), ui-serif;
+  --font-serif: var(--font-trunculenta), ui-serif;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);

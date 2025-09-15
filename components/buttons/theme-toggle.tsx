@@ -9,7 +9,7 @@ type AnimatedThemeProps = {
   className?: string;
 };
 
-export default function ThemeToggle({ className }: AnimatedThemeProps) {
+export default function ThemeToggleButton({ className }: AnimatedThemeProps) {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const changeTheme = async () => {

@@ -22,6 +22,14 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "components/twitter/base.jsx",
+    "components/twitter/tweets.jsx",
+    "components/twitter/tweet.jsx"
+  ],
   "exclude": ["node_modules"]
 }

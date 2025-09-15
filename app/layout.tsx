@@ -1,17 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins, Noto_Serif, Rubik_Doodle_Shadow } from "next/font/google";
+import { Poppins, Truculenta } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
 import { ThemeProvider, TooltipProvider } from "@/providers";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
-
-const rubik = Rubik_Doodle_Shadow({
-  subsets: ["latin"],
-  style: ["normal"],
-  weight: ["400"],
-  display: "swap",
-  variable: "--font-rubik",
-});
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -21,12 +13,8 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-const notoSerif = Noto_Serif({
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  display: "swap",
-  variable: "--font-noto-serif",
+const truculenta = Truculenta({
+  variable: "--font-trunculenta",
 });
 
 export const metadata: Metadata = {
@@ -50,7 +38,7 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang='en' suppressHydrationWarning>
         <body
-          className={`${rubik.variable} ${poppins.variable} ${notoSerif.variable} font-sans antialiased`}
+          className={`${poppins.variable} ${truculenta.variable} font-sans antialiased`}
         >
           <ThemeProvider
             attribute='class'
