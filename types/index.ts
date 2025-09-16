@@ -105,6 +105,12 @@ export interface CalendarEvent {
   url?: string;
 }
 
+export interface CalendarEvents {
+  currentDate: Date;
+  events: CalendarEvent[];
+  onDateChange: (date: Date) => void;
+}
+
 export interface UseCalendarEventsResult {
   events: CalendarEvent[];
   loading: boolean;

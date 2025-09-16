@@ -1,14 +1,17 @@
 "use client";
 
-import { ClockIcon, MapPinIcon } from "lucide-react";
+import { ClockIcon, ExternalLinkIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
+import { formatEventTime, getEventLabelColor } from "@/lib/helpers";
 import { type CalendarEvent } from "@/types";
 
 interface EventDialogProps {
@@ -20,32 +23,6 @@ interface EventDialogProps {
 export function EventDialog({ event, open, onOpenChange }: EventDialogProps) {
   if (!event) return null;
 
-  const isAllDay =
-    event.start.getHours() === 0 &&
-    event.start.getMinutes() === 0 &&
-    event.end.getHours() === 23 &&
-    event.end.getMinutes() === 59;
-
-  const formatTime = (date: Date) =>
-    date.toLocaleTimeString("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
-    });
-
-  const getTypeColor = (type: string) => {
-    switch (type) {
-      case "stream":
-        return "bg-primary text-primary-foreground";
-      case "family":
-        return "bg-secondary text-secondary-foreground";
-      case "content":
-        return "bg-accent text-accent-foreground";
-      default:
-        return "bg-muted text-muted-foreground";
-    }
-  };
-
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
@@ -53,48 +30,32 @@ export function EventDialog({ event, open, onOpenChange }: EventDialogProps) {
         aria-describedby='event-dialog-description'
       >
         <DialogHeader>
-          <DialogTitle className='text-xl'>{event.title}</DialogTitle>
-        </DialogHeader>
-
-        <div id='event-dialog-description' className='space-y-4 pt-2'>
           <Badge
             className={cn(
-              "rounded-full px-2 py-0.5 text-xs font-medium",
-              getTypeColor(event.type)
+              "ml-[-2px] rounded-full text-xs font-medium",
+              getEventLabelColor(event.type)
             )}
           >
             {event.type.toUpperCase()}
           </Badge>
-
-          <div className='flex items-center gap-2 text-sm text-muted-foreground'>
-            <ClockIcon className='h-4 w-4' />
-            {isAllDay
-              ? "All Day"
-              : `${formatTime(event.start)} - ${formatTime(event.end)}`}
-          </div>
-
-          {event.location && (
-            <div className='flex items-center gap-2 text-sm text-muted-foreground'>
-              <MapPinIcon className='h-4 w-4' />
-              {event.location}
-            </div>
-          )}
-
-          {event.description && (
-            <p className='text-sm text-muted-foreground'>{event.description}</p>
-          )}
-
+          <DialogTitle className='pt-1 text-xl'>{event.title}</DialogTitle>
+        </DialogHeader>
+        <DialogDescription className='flex items-center gap-2 text-sm text-muted-foreground'>
+          <ClockIcon className='size-4' />
+          {formatEventTime(event)}
+        </DialogDescription>
+        <DialogFooter>
           {event.url && (
             <a
               href={event.url}
               target='_blank'
               rel='noopener noreferrer'
-              className='text-sm text-primary underline'
+              className='flex h-8 items-center gap-1 px-0 text-sm font-medium text-blue-500/80 transition-colors hover:text-blue-500'
             >
-              View in Google Calendar
+              Save to Google Calendar <ExternalLinkIcon className='size-4' />
             </a>
           )}
-        </div>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

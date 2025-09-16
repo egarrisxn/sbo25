@@ -9,7 +9,7 @@ import {
   TwitterIcon,
   YoutubeIcon,
 } from "@/components/icons";
-import type { Links, Socials, Cards, Blog, CalendarEvent } from "@/types";
+import type { Links, Socials, Cards, Blog } from "@/types";
 
 // Shared Social Data
 export const socialData: Socials[] = [
@@ -183,62 +183,3 @@ export const photoGrid: string[] = [
 
 // Calendar Data
 export const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-export const UTC = new Intl.DateTimeFormat("en-US", {
-  hour: "numeric",
-  minute: "2-digit",
-  timeZone: "UTC",
-});
-
-// Mock Calendar Data
-export const mockEvents: CalendarEvent[] = [
-  {
-    id: "1",
-    title: "Family BBQ",
-    description: "Backyard gathering with cousins",
-    location: "Central Park",
-    allDay: false,
-    start: new Date(Date.UTC(2025, 8, 14, 17, 0)),
-    end: new Date(Date.UTC(2025, 8, 14, 20, 0)),
-    url: "https://calendar.google.com",
-  },
-  {
-    id: "2",
-    title: "Gaming Stream",
-    description: "Twitch community night",
-    location: "Online",
-    allDay: false,
-    start: new Date(Date.UTC(2025, 8, 15, 0, 0)),
-    end: new Date(Date.UTC(2025, 8, 15, 2, 0)),
-    url: "https://twitch.tv/example",
-  },
-  {
-    id: "3",
-    title: "All Hands Meeting",
-    description: "Monthly strategy sync",
-    location: "Discord",
-    allDay: true,
-    start: new Date(Date.UTC(2025, 8, 18, 0, 0)),
-    end: new Date(Date.UTC(2025, 8, 18, 23, 59)),
-    url: undefined,
-  },
-  {
-    id: "4",
-    title: "Birthday Party 🎉",
-    description: "Don't forget the cake!",
-    location: "Grandma's House",
-    allDay: false,
-    start: new Date(Date.UTC(2025, 8, 20, 19, 0)),
-    end: new Date(Date.UTC(2025, 8, 20, 23, 0)),
-    url: undefined,
-  },
-  {
-    id: "5",
-    title: "Funeral",
-    description: "Don't forget the body!",
-    location: "Reapers House",
-    allDay: false,
-    start: new Date(Date.UTC(2025, 8, 20, 13, 0)),
-    end: new Date(Date.UTC(2025, 8, 20, 15, 0)),
-    url: undefined,
-  },
-];

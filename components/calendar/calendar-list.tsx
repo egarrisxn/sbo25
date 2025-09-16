@@ -1,67 +1,25 @@
 "use client";
 
-import { ClockIcon, MapPinIcon, ExternalLinkIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ClockIcon, ExternalLinkIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { type CalendarEvent } from "@/types";
+import {
+  getEventLabelColor,
+  getEventLabelType,
+  formatEventTime,
+} from "@/lib/helpers";
+import type { CalendarEvent, CalendarEvents } from "@/types";
 
-interface CalendarListProps {
-  events: CalendarEvent[];
-  currentDate?: Date;
-  onDateChange?: (date: Date) => void;
-}
+export function CalendarList({ currentDate, events }: CalendarEvents) {
+  const year = currentDate?.getFullYear() ?? new Date().getFullYear();
+  const month = currentDate?.getMonth() ?? new Date().getMonth();
 
-export function CalendarList({ events }: CalendarListProps) {
-  const getEventTypeColor = (type: string) => {
-    switch (type) {
-      case "stream":
-        return "bg-primary text-primary-foreground";
-      case "family":
-        return "bg-secondary text-secondary-foreground";
-      case "content":
-        return "bg-accent text-accent-foreground";
-      default:
-        return "bg-muted text-muted-foreground";
-    }
-  };
+  const lastDay = new Date(year, month + 1, 0).getDate();
+  const monthDates = Array.from(
+    { length: lastDay },
+    (_, i) => new Date(year, month, i + 1)
+  );
 
-  const getEventTypeLabel = (type: string) => {
-    switch (type) {
-      case "stream":
-        return "Stream";
-      case "family":
-        return "Family";
-      case "content":
-        return "Content";
-      default:
-        return "Event";
-    }
-  };
-
-  const formatEventTime = (event: CalendarEvent) => {
-    const start = event.start;
-    const end = event.end;
-    const isAllDay =
-      start.getHours() === 0 &&
-      start.getMinutes() === 0 &&
-      end.getHours() === 23 &&
-      end.getMinutes() === 59;
-    if (isAllDay) return "All day";
-    const startTime = start.toLocaleTimeString("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
-    });
-    const endTime = end.toLocaleTimeString("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
-    });
-    return `${startTime} - ${endTime}`;
-  };
-
-  // Group events by date
   const eventsByDate = events.reduce(
     (acc, event) => {
       const dateKey = event.start.toDateString();
@@ -72,27 +30,16 @@ export function CalendarList({ events }: CalendarListProps) {
     {} as Record<string, CalendarEvent[]>
   );
 
-  const sortedDates = Object.keys(eventsByDate).sort(
-    (a, b) => new Date(a).getTime() - new Date(b).getTime()
-  );
-
-  if (sortedDates.length === 0)
-    return (
-      <p className='py-12 text-center text-muted-foreground'>
-        No events this month
-      </p>
-    );
-
   return (
-    <div className='space-y-6'>
-      {sortedDates.map((dateKey) => {
-        const dayEvents = eventsByDate[dateKey];
-        const dateObj = new Date(dateKey);
-        const isToday = new Date().toDateString() === dateObj.toDateString();
+    <div className='space-y-4'>
+      {monthDates.map((dateObj) => {
+        const dateKey = dateObj.toDateString();
+        const dayEvents = eventsByDate[dateKey] || [];
+        const isToday = new Date().toDateString() === dateKey;
 
         return (
-          <div key={dateKey} className='space-y-3'>
-            {/* Date Header */}
+          <div key={dateKey} className='space-y-2 pt-1'>
+            {/* Date header */}
             <div
               className={cn(
                 "flex items-center gap-3 border-b border-border pb-2",
@@ -113,68 +60,49 @@ export function CalendarList({ events }: CalendarListProps) {
               )}
             </div>
 
-            {/* Events for this date */}
-            <div className='space-y-3'>
-              {dayEvents.map((event) => (
-                <div
-                  key={event.id}
-                  className='rounded-xl border border-border bg-card p-4 transition-shadow duration-200 hover:shadow-md'
-                >
-                  <div className='flex items-start justify-between gap-4'>
-                    <div className='flex-1 space-y-2'>
-                      <div className='flex items-center gap-3'>
-                        <h4 className='font-semibold text-foreground'>
-                          {event.title}
-                        </h4>
-                        <Badge
-                          className={cn(
-                            "rounded-full text-xs",
-                            getEventTypeColor(event.type)
-                          )}
-                        >
-                          {getEventTypeLabel(event.type)}
-                        </Badge>
-                      </div>
-
-                      {event.description && (
-                        <p className='text-sm leading-relaxed text-muted-foreground'>
-                          {event.description}
-                        </p>
-                      )}
-
-                      <div className='flex items-center gap-4 text-sm text-muted-foreground'>
-                        <div className='flex items-center gap-1'>
-                          <ClockIcon className='h-4 w-4' />
-                          {formatEventTime(event)}
-                        </div>
-                        {event.location && (
-                          <div className='flex items-center gap-1'>
-                            <MapPinIcon className='h-4 w-4' />
-                            {event.location}
-                          </div>
+            {/* Events list */}
+            <div className='space-y-2'>
+              {dayEvents.length === 0 ? (
+                <p className='text-sm text-muted-foreground'>No events</p>
+              ) : (
+                dayEvents.map((event) => (
+                  <div
+                    key={event.id}
+                    className='rounded-2xl border border-border bg-card p-4 shadow-sm transition-shadow hover:shadow-md'
+                  >
+                    <div className='mb-2.5 flex items-center justify-between gap-2'>
+                      <h4 className='text-[1.175rem] leading-[1.45] font-semibold'>
+                        {event.title}
+                      </h4>
+                      <Badge
+                        className={cn(
+                          "rounded-full text-xs font-medium",
+                          getEventLabelColor(event.type)
                         )}
-                      </div>
+                      >
+                        {getEventLabelType(event.type)}
+                      </Badge>
+                    </div>
+
+                    <div className='mb-2.5 flex items-center gap-1 text-sm text-muted-foreground'>
+                      <ClockIcon className='size-3.5' />
+                      {formatEventTime(event)}
                     </div>
 
                     {event.url && (
-                      <Button
-                        variant='ghost'
-                        size='sm'
-                        asChild
-                        className='rounded-lg'
+                      <a
+                        href={event.url}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='flex h-8 items-center gap-1 px-0 text-sm font-medium text-blue-500/80 transition-colors hover:text-blue-500'
                       >
-                        <a
-                          href={event.url}
-                          target='_blank'
-                          rel='noopener noreferrer'
-                        >
-                          <ExternalLinkIcon className='h-4 w-4' />
-                        </a>
-                      </Button>
+                        Save to Google Calendar
+                        <ExternalLinkIcon className='size-4' />
+                      </a>
                     )}
                   </div>
-                </div>
-              ))}
+                ))
+              )}
             </div>
           </div>
         );

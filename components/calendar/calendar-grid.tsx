@@ -3,19 +3,11 @@
 import { useState } from "react";
 import { EventDialog } from "@/components/calendar/event-dialog";
 import { cn } from "@/lib/utils";
-import { type CalendarEvent } from "@/types";
+import { getEventLabelColor } from "@/lib/helpers";
+import { DAYS } from "@/lib/data";
+import type { CalendarEvent, CalendarEvents } from "@/types";
 
-interface CalendarGridProps {
-  currentDate: Date;
-  onDateChange: (date: Date) => void;
-  events: CalendarEvent[];
-}
-
-export function CalendarGrid({
-  currentDate,
-  onDateChange,
-  events,
-}: CalendarGridProps) {
+export function CalendarGrid({ currentDate, events }: CalendarEvents) {
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | undefined>(
     undefined
   );
@@ -45,19 +37,6 @@ export function CalendarGrid({
     });
   };
 
-  const getEventTypeColor = (type: string) => {
-    switch (type) {
-      case "stream":
-        return "bg-primary";
-      case "family":
-        return "bg-secondary";
-      case "content":
-        return "bg-accent";
-      default:
-        return "bg-muted-foreground";
-    }
-  };
-
   const handleEventClick = (event: CalendarEvent) => {
     setSelectedEvent(event);
     setShowEventDialog(true);
@@ -65,9 +44,8 @@ export function CalendarGrid({
 
   return (
     <div className='p-6'>
-      {/* Days of Week */}
       <div className='mb-4 grid grid-cols-7 gap-2'>
-        {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+        {DAYS.map((day) => (
           <div
             key={day}
             className='py-2 text-center text-sm font-medium text-muted-foreground'
@@ -77,7 +55,6 @@ export function CalendarGrid({
         ))}
       </div>
 
-      {/* Calendar Grid */}
       <div className='grid grid-cols-7 gap-2'>
         {days.map((day, idx) => {
           if (day === null)
@@ -92,31 +69,39 @@ export function CalendarGrid({
             <div
               key={`day-${day}-${idx}`}
               className={cn(
-                "aspect-square rounded-xl border-2 border-transparent p-2 transition-all duration-200",
-                isToday && "border-primary/30 bg-primary/10"
+                "flex aspect-square flex-col rounded-md border border-border/30 p-2 transition-all duration-200",
+                isToday && "border-border/100 bg-muted/10"
               )}
             >
               <span className='mb-1 text-sm font-medium'>{day}</span>
-              <div className='flex flex-1 flex-col gap-1'>
-                {dayEvents.slice(0, 2).map((event) => (
-                  <div
-                    key={event.id}
-                    role='button'
-                    tabIndex={0}
-                    onClick={() => handleEventClick(event)}
-                    className={cn(
-                      "cursor-pointer truncate rounded px-1 py-0.5 text-xs text-white transition-opacity hover:opacity-80",
-                      getEventTypeColor(event.type)
+              <div className='flex flex-1 flex-col gap-1 overflow-hidden'>
+                {dayEvents.length === 0 ? (
+                  <p className='truncate text-xs text-muted-foreground'>
+                    No events today
+                  </p>
+                ) : (
+                  <>
+                    {dayEvents.slice(0, 2).map((event) => (
+                      <div
+                        key={event.id}
+                        role='button'
+                        tabIndex={0}
+                        onClick={() => handleEventClick(event)}
+                        className={cn(
+                          "cursor-pointer truncate rounded px-1 py-0.5 text-xs text-white transition-opacity hover:opacity-80",
+                          getEventLabelColor(event.type)
+                        )}
+                        title={event.title}
+                      >
+                        {event.title}
+                      </div>
+                    ))}
+                    {dayEvents.length > 2 && (
+                      <div className='text-xs text-muted-foreground'>
+                        +{dayEvents.length - 2} more
+                      </div>
                     )}
-                    title={event.title}
-                  >
-                    {event.title}
-                  </div>
-                ))}
-                {dayEvents.length > 2 && (
-                  <div className='text-xs text-muted-foreground'>
-                    +{dayEvents.length - 2} more
-                  </div>
+                  </>
                 )}
               </div>
             </div>
@@ -124,7 +109,6 @@ export function CalendarGrid({
         })}
       </div>
 
-      {/* Event Dialog */}
       <EventDialog
         event={selectedEvent}
         open={showEventDialog}
