@@ -1,5 +1,4 @@
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
+import LandingNavbar from "@/components/landing/navbar";
 import Hero from "@/components/landing/hero";
 import About from "@/components/landing/about";
 import YouTube from "@/components/landing/youtube";
@@ -10,32 +9,30 @@ import Blog from "@/components/landing/blog";
 import Socials from "@/components/landing/socials";
 import Contact from "@/components/landing/contact";
 import Photos from "@/components/landing/photos";
+import LandingFooter from "@/components/landing/footer";
 import ScrollDownButton from "@/components/buttons/scroll-down";
 import ScrollUpButton from "@/components/buttons/scroll-up";
 import SectionDivider from "@/components/shared/section-divider";
 
 export default function LandingPage() {
   return (
-    <div className='relative grid min-h-dvh w-full grid-rows-[auto_1fr_auto] overscroll-contain bg-linear-90 from-[#00d2ff1a] to-[#ca66fb0d]'>
-      <header className='fixed z-30 mx-auto flex w-full items-center bg-background/80 backdrop-blur-md'>
-        <Navbar />
-      </header>
+    <div className='relative grid min-h-dvh w-full grid-rows-[auto_1fr_auto] overscroll-contain'>
+      <LandingNavbar />
 
       <main>
         <section className='relative z-40 h-screen w-full overflow-hidden bg-background'>
           <Hero />
           <ScrollDownButton targetId='about' />
         </section>
-
-        <section>
+        <section className='bg-linear-90 from-[#00d2ff1a] to-[#ca66fb0d]'>
           <About />
           <YouTube />
           <Twitter />
-          <SectionDivider />
+          <SectionDivider className='stroke-secondary' />
           <Calendar />
-          <SectionDivider />
+          <SectionDivider className='stroke-accent' />
           <Merch />
-          <SectionDivider />
+          <SectionDivider className='stroke-primary' />
           <Blog />
           <Socials />
           <Contact />
@@ -44,9 +41,7 @@ export default function LandingPage() {
         </section>
       </main>
 
-      <footer className='w-full p-5'>
-        <Footer />
-      </footer>
+      <LandingFooter />
     </div>
   );
 }

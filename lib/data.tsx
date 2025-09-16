@@ -9,7 +9,7 @@ import {
   TwitterIcon,
   YoutubeIcon,
 } from "@/components/icons";
-import type { Links, Socials, Cards, Blog, CalEvent } from "@/types";
+import type { Links, Socials, Cards, Blog, CalendarEvent } from "@/types";
 
 // Shared Social Data
 export const socialData: Socials[] = [
@@ -94,7 +94,7 @@ export const footerLinksTwo: Links[] = [
   { href: "/media", label: "Media Kit" },
   { href: "/faq", label: "FAQs" },
 ];
-export const footerLinksThree: Links[] = [
+export const sharedFooterLinks: Links[] = [
   { href: "/accessibility", label: "Accessibility" },
   { href: "/cookies", label: "Cookies" },
   { href: "/privacy", label: "Privacy" },
@@ -189,16 +189,16 @@ export const UTC = new Intl.DateTimeFormat("en-US", {
   timeZone: "UTC",
 });
 
-// Mock Data
-export const mockEvents: CalEvent[] = [
+// Mock Calendar Data
+export const mockEvents: CalendarEvent[] = [
   {
     id: "1",
     title: "Family BBQ",
     description: "Backyard gathering with cousins",
     location: "Central Park",
     allDay: false,
-    start: new Date(Date.UTC(2025, 8, 14, 17, 0)), // Sept 14, 2025, 5:00 PM UTC
-    end: new Date(Date.UTC(2025, 8, 14, 20, 0)), // Sept 14, 2025, 8:00 PM UTC
+    start: new Date(Date.UTC(2025, 8, 14, 17, 0)),
+    end: new Date(Date.UTC(2025, 8, 14, 20, 0)),
     url: "https://calendar.google.com",
   },
   {
@@ -207,7 +207,7 @@ export const mockEvents: CalEvent[] = [
     description: "Twitch community night",
     location: "Online",
     allDay: false,
-    start: new Date(Date.UTC(2025, 8, 15, 0, 0)), // Sept 15, midnight UTC
+    start: new Date(Date.UTC(2025, 8, 15, 0, 0)),
     end: new Date(Date.UTC(2025, 8, 15, 2, 0)),
     url: "https://twitch.tv/example",
   },
@@ -224,11 +224,21 @@ export const mockEvents: CalEvent[] = [
   {
     id: "4",
     title: "Birthday Party 🎉",
-    description: "Don’t forget the cake!",
-    location: "Grandma’s House",
+    description: "Don't forget the cake!",
+    location: "Grandma's House",
     allDay: false,
     start: new Date(Date.UTC(2025, 8, 20, 19, 0)),
     end: new Date(Date.UTC(2025, 8, 20, 23, 0)),
+    url: undefined,
+  },
+  {
+    id: "5",
+    title: "Funeral",
+    description: "Don't forget the body!",
+    location: "Reapers House",
+    allDay: false,
+    start: new Date(Date.UTC(2025, 8, 20, 13, 0)),
+    end: new Date(Date.UTC(2025, 8, 20, 15, 0)),
     url: undefined,
   },
 ];

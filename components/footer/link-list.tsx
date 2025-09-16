@@ -1,10 +1,7 @@
 import { Link } from "next-view-transitions";
-
 import type { LinkLists } from "@/types";
 
 export default function LinkList({ title, links }: LinkLists) {
-  const commonClasses = "hover:text-link mb-4 inline-block transition-color";
-
   return (
     <section>
       <h4 className='mb-6 text-sm font-medium'>{title}</h4>
@@ -15,7 +12,7 @@ export default function LinkList({ title, links }: LinkLists) {
               <a
                 href={href}
                 aria-label={`${label} Page`}
-                className={commonClasses}
+                className='transition-color mb-4 inline-block hover:text-link'
                 target='_blank'
                 rel='noopener noreferrer'
               >
@@ -25,7 +22,7 @@ export default function LinkList({ title, links }: LinkLists) {
               <Link
                 href={href}
                 aria-label={`${label} Page`}
-                className={commonClasses}
+                className='transition-color mb-4 inline-block hover:text-link'
               >
                 {label}
               </Link>

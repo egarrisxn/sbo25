@@ -1,5 +1,4 @@
 import SocialCard from "@/components/cards/social-card";
-
 import { socialData } from "@/lib/data";
 
 export default function Socials() {

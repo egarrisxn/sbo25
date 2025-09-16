@@ -7,7 +7,6 @@ import {
   NavigationMenuItem,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-
 import { navLinks } from "@/lib/data";
 
 export default function DesktopMenu() {
@@ -17,11 +16,11 @@ export default function DesktopMenu() {
   return (
     <div className='hidden md:block'>
       <NavigationMenu className='flex'>
-        <NavigationMenuList className='gap-6 lg:gap-8'>
+        <NavigationMenuList className='md:gap-6 xl:gap-8'>
           {navLinks.map((link, index) => (
             <NavigationMenuItem
               key={index}
-              className='inline-flex w-max cursor-pointer items-center justify-center text-sm font-medium transition-all hover:text-link'
+              className='inline-flex w-max cursor-pointer items-center justify-center text-sm font-medium transition-all hover:text-link xl:text-lg'
             >
               {link.external ? (
                 <a href={link.href} target='_blank' rel='noreferrer noopener'>

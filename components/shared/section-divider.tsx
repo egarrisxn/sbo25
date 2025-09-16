@@ -1,6 +1,10 @@
-export default function SectionDivider() {
+interface SectionDividerProps {
+  className: string;
+}
+
+export default function SectionDivider({ className }: SectionDividerProps) {
   return (
-    <div className='h-32 w-full overflow-hidden'>
+    <div className='h-40 w-full overflow-hidden'>
       <svg
         viewBox='0 0 1200 200'
         preserveAspectRatio='none'
@@ -13,7 +17,7 @@ export default function SectionDivider() {
           '
           fill='none'
           strokeWidth={3}
-          className='stroke-secondary'
+          className={className}
         />
       </svg>
     </div>

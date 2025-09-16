@@ -74,30 +74,40 @@ export interface VideoAnimationVariants {
 }
 
 // Calendar
-export type GCalEventRaw = {
+export interface GoogleCalendarEvent {
   id: string;
   summary: string;
   description?: string;
+  start: {
+    dateTime?: string;
+    date?: string;
+    timeZone?: string;
+  };
+  end: {
+    dateTime?: string;
+    date?: string;
+    timeZone?: string;
+  };
   location?: string;
-  htmlLink?: string;
-  start: { date?: string; dateTime?: string };
-  end: { date?: string; dateTime?: string };
-};
-export type CalEvent = {
+  status: string;
+  htmlLink: string;
+  colorId?: string;
+}
+
+export interface CalendarEvent {
   id: string;
   title: string;
+  description?: string;
   start: Date;
   end: Date;
-  allDay: boolean;
-  url?: string;
   location?: string;
-  description?: string;
-};
-export type DaySegment = {
-  day: string;
-  event: CalEvent;
-  isStart: boolean;
-  isEnd: boolean;
-};
-export const TIMEZONES = ["utc", "local"] as const;
-export type Timezone = (typeof TIMEZONES)[number];
+  type: "stream" | "family" | "content" | "other";
+  url?: string;
+}
+
+export interface UseCalendarEventsResult {
+  events: CalendarEvent[];
+  loading: boolean;
+  error: string | null;
+  refetch: () => void;
+}

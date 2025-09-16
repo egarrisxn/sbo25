@@ -1,6 +1,5 @@
 import { BlurText } from "@/components/ui/blur";
 import { Tweets } from "@/components/ui/tweets";
-
 import { tweetGrid } from "@/lib/data";
 
 const text = {

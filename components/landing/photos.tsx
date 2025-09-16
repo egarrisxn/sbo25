@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { BlurItem } from "@/components/ui/blur";
-
 import { photoGrid } from "@/lib/data";
 
 export default function Photos() {

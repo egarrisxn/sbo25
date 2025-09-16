@@ -13,7 +13,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { DropdownMenuButton } from "@/components/buttons/dropdown-menu";
-
 import { navLinks } from "@/lib/data";
 
 export default function MobileMenu() {

@@ -1,7 +1,6 @@
 "use client";
 
 import useSmoothScroll from "@/hooks/use-smooth-scroll";
-
 import type { ScrollButtons } from "@/types";
 
 export default function BackToTopButton({ targetId }: ScrollButtons) {

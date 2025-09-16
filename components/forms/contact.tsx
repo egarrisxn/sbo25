@@ -1,4 +1,10 @@
-import { Card, CardContent } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -6,11 +12,15 @@ import { Button } from "@/components/ui/button";
 
 export default function ContactForm() {
   return (
-    <Card className='rounded-3xl bg-blue-500/10 shadow-none'>
-      <CardContent className='p-6 md:p-10'>
-        <form className='grid gap-x-8 gap-y-5 md:grid-cols-2'>
-          <div className='col-span-2 sm:col-span-1'>
-            <Label htmlFor='name' className='mb-1'>
+    <Card className='rounded-3xl bg-muted px-2 pb-4 shadow-none md:px-4 md:pb-8'>
+      <CardHeader>
+        <CardTitle className='text-2xl'>Contact Me!</CardTitle>
+        <CardDescription>I typeiclly respond with 24 hours.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form className='grid gap-6'>
+          <div>
+            <Label htmlFor='name' className='mb-2'>
               Name
             </Label>
             <Input
@@ -21,8 +31,8 @@ export default function ContactForm() {
             />
           </div>
 
-          <div className='col-span-2 sm:col-span-1'>
-            <Label htmlFor='email' className='mb-1'>
+          <div>
+            <Label htmlFor='email' className='mb-2'>
               Email
             </Label>
             <Input
@@ -33,24 +43,20 @@ export default function ContactForm() {
             />
           </div>
 
-          <div className='col-span-2'>
-            <Label htmlFor='message' className='mb-1'>
+          <div>
+            <Label htmlFor='message' className='mb-2'>
               Message
             </Label>
             <Textarea
               id='message'
               name='message'
-              rows={18}
+              rows={30}
               placeholder='Message'
-              className='bg-white shadow-none'
+              className='h-full bg-white shadow-none'
             />
           </div>
 
-          <Button
-            disabled
-            size='lg'
-            className='col-span-2 mt-4 w-full uppercase'
-          >
+          <Button disabled size='lg' className='mt-4 w-full uppercase'>
             Submit
           </Button>
         </form>

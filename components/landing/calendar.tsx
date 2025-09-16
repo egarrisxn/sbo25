@@ -1,8 +1,7 @@
 import { Link } from "next-view-transitions";
 import { BlurItem, BlurText } from "@/components/ui/blur";
 import { Button } from "@/components/ui/button";
-import CalendarShell from "@/components/calendar/calendar-shell";
-import ListView from "@/components/calendar/list-view";
+import LandingCalendar from "@/components/calendar/landing-calendar";
 
 const text = {
   b: `Stay up to date`,
@@ -10,9 +9,7 @@ const text = {
   p: `I create family-friendly entertainment centered around the concepts of positive mental attitude in gaming with the mantra of leaving someone's day better than it was.`,
 };
 
-export default async function Calendar(props: {
-  searchParams?: Promise<Record<string, string | string[]>>;
-}) {
+export default function CalendarSection() {
   return (
     <div className='container mx-auto py-24'>
       <div className='mx-auto grid w-full max-w-screen-lg grid-cols-1 gap-12 px-6 lg:grid-cols-2 lg:place-items-start xl:max-w-screen-xl 2xl:place-items-center 2xl:gap-16 2xl:px-0'>
@@ -37,17 +34,12 @@ export default async function Calendar(props: {
           </BlurText>
           <BlurItem delay={0.3}>
             <Link href='/calendar'>
-              <Button>Check Schedule</Button>
+              <Button size='lg'>Check Schedule</Button>
             </Link>
           </BlurItem>
         </section>
         <section className='order-2 mx-auto flex w-full flex-col justify-center lg:order-1 xl:max-w-xl'>
-          <CalendarShell searchParams={props.searchParams}>
-            {({ year, month, timezone }) => (
-              <ListView year={year} month={month} timezone={timezone} />
-            )}
-          </CalendarShell>
-          <p className='pt-1 pl-1'>This is currently using mock data.</p>
+          <LandingCalendar />
         </section>
       </div>
     </div>

@@ -3,7 +3,6 @@ import { Link } from "next-view-transitions";
 import { BlurItem, BlurText } from "@/components/ui/blur";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "@/components/icons";
-
 import { blogList } from "@/lib/data";
 
 const text = {

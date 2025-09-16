@@ -3,7 +3,6 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-
 import type { Socials } from "@/types";
 
 export default function SocialIcon({ title, href, Icon, className }: Socials) {

@@ -3,7 +3,6 @@
 import Image from "next/image";
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { motion, PanInfo } from "motion/react";
-
 import { merchCards } from "@/lib/data";
 
 export default function MerchCards() {
