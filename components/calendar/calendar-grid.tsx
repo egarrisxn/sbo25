@@ -3,9 +3,9 @@
 import { useState } from "react";
 import { EventDialog } from "@/components/calendar/event-dialog";
 import { cn } from "@/lib/utils";
-import { getEventLabelColor } from "@/lib/helpers";
+import { getEventLabelColor } from "@/lib/calendar";
 import { DAYS } from "@/lib/data";
-import type { CalendarEvent, CalendarEvents } from "@/types";
+import type { CalendarEvent, CalendarEvents } from "@/lib/types";
 
 export function CalendarGrid({ currentDate, events }: CalendarEvents) {
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | undefined>(

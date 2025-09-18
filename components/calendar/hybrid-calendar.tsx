@@ -1,8 +1,10 @@
 "use client";
 
+import { useCalendarEvents } from "@/hooks/use-calendar-events/mock"; //! DEVELOPMENT
+// import { useCalendarEvents } from "@/hooks/use-calendar-events"; //! PRODUCTION
+
 import { useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon, RefreshCwIcon } from "lucide-react";
-import { useCalendarEvents } from "@/hooks/use-calendar-events";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { DAYS } from "@/lib/data";

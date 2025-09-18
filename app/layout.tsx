@@ -2,7 +2,8 @@ import type { ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
 import { Poppins, Truculenta } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
-import { ThemeProvider, TooltipProvider } from "@/providers";
+import { ThemeProvider } from "@/app/_providers/theme";
+import { TooltipProvider } from "@/app/_providers/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 

@@ -1,4 +1,4 @@
-import type { Icons } from "@/types";
+import type { Icons } from "@/lib/types";
 
 const CloseIcon = ({ className = "", width = "24", height = "24" }: Icons) => {
   return (

@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function FaceLogo() {
+export function FaceLogo() {
   return (
     <div className='flex w-fit flex-col'>
       <Image

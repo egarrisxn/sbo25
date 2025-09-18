@@ -1,4 +1,4 @@
-import { Icons } from "@/types";
+import { Icons } from "@/lib/types";
 
 const InstagramIcon = ({
   className = "",

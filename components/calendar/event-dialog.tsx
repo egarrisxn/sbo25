@@ -11,8 +11,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
-import { formatEventTime, getEventLabelColor } from "@/lib/helpers";
-import { type CalendarEvent } from "@/types";
+import { formatEventTime, getEventLabelColor } from "@/lib/calendar";
+import { type CalendarEvent } from "@/lib/types";
 
 interface EventDialogProps {
   event?: CalendarEvent;

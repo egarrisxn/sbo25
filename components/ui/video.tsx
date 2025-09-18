@@ -5,7 +5,7 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { CloseIcon, PlayIcon } from "@/components/icons";
-import type { VideoAnimationStyle, VideoAnimationVariants } from "@/types";
+import type { VideoAnimationStyle, VideoAnimationVariants } from "@/lib/types";
 
 const videoAnimationVariants: Record<
   VideoAnimationStyle,

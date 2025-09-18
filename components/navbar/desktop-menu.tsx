@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { navLinks } from "@/lib/data";
 
-export default function DesktopMenu() {
+export function DesktopMenu() {
   const pathname = usePathname();
   const activeStyle = { color: "var(--link)" };
 

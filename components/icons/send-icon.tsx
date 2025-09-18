@@ -1,4 +1,4 @@
-import { Icons } from "@/types";
+import { Icons } from "@/lib/types";
 
 const SendIcon = ({ className = "", width = "24", height = "24" }: Icons) => {
   return (

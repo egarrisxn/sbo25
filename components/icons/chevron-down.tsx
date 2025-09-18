@@ -1,4 +1,4 @@
-import type { Icons } from "@/types";
+import type { Icons } from "@/lib/types";
 
 const ChevronDown = ({
   className = "",

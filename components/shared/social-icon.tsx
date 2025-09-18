@@ -3,9 +3,9 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import type { Socials } from "@/types";
+import type { Socials } from "@/lib/types";
 
-export default function SocialIcon({ title, href, Icon, className }: Socials) {
+export function SocialIcon({ title, href, Icon, className }: Socials) {
   return (
     <Tooltip>
       <TooltipTrigger asChild>

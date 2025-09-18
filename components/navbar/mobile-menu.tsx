@@ -12,10 +12,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { DropdownMenuButton } from "@/components/buttons/dropdown-menu";
+import { DropdownToggle } from "@/components/navbar/dropdown-toggle";
 import { navLinks } from "@/lib/data";
 
-export default function MobileMenu() {
+export function MobileMenu() {
   const pathname = usePathname();
   const activeStyle = { color: "var(--link)" };
 
@@ -23,7 +23,7 @@ export default function MobileMenu() {
     <div className='md:hidden'>
       <Popover>
         <PopoverTrigger asChild>
-          <DropdownMenuButton />
+          <DropdownToggle />
         </PopoverTrigger>
         <PopoverContent align='start' className='w-32'>
           <NavigationMenu className='max-w-none'>

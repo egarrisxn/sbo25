@@ -1,7 +1,7 @@
 import { Link } from "next-view-transitions";
-import type { Links } from "@/types";
+import type { Links } from "@/lib/types";
 
-export default function LinkRenderer({ href, label, icon, external }: Links) {
+export function LinkRenderer({ href, label, icon, external }: Links) {
   const commonClasses = "flex items-center transition-colors hover:text-link";
 
   const content = icon ? (
