@@ -34,7 +34,7 @@ export default function CalendarSection() {
           </BlurText>
           <BlurItem delay={0.3}>
             <Link href='/calendar'>
-              <Button size='lg'>Check Schedule</Button>
+              <Button variant='outline'>Check Schedule</Button>
             </Link>
           </BlurItem>
         </section>

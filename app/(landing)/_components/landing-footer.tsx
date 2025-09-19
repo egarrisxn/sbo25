@@ -15,8 +15,8 @@ import {
 
 export default function LandingFooter() {
   return (
-    <footer className='w-full bg-linear-90 from-[#00d2ff1a] to-[#ca66fb0d] p-5'>
-      <div className='mx-auto w-full max-w-screen-5xl rounded-3xl bg-muted pt-12 pb-6'>
+    <footer className='pt-6 md:px-6 md:pb-6'>
+      <div className="z-0 mx-auto w-full max-w-screen-5xl rounded-t-3xl bg-shaded bg-[url('/grainy.png')] bg-repeat pt-6 md:rounded-3xl md:pt-12 md:pb-6 md:shadow-lg">
         <div className='px-4 pt-16 pb-12 sm:px-6 lg:px-8 xl:px-16 2xl:px-24'>
           <div className='flex flex-wrap gap-10 lg:justify-between lg:gap-0'>
             <section className='order-2 mb-2 flex w-[75%] flex-col gap-16 md:order-1 md:mb-8 lg:mb-0 lg:w-[30%] lg:gap-18 xl:w-[25%]'>
@@ -28,21 +28,19 @@ export default function LandingFooter() {
               </div>
             </section>
 
-            <section className='order-1 flex w-full flex-col gap-8 md:order-2 md:flex-row md:justify-between md:gap-0 lg:w-[65%] xl:w-[60%]'>
+            <section className='order-1 flex w-full flex-col gap-8 text-shaded-foreground md:order-2 md:flex-row md:justify-between md:gap-0 lg:w-[65%] xl:w-[60%]'>
               <LinkList title='Quick Links' links={footerLinksOne} />
               <LinkList title='More Links' links={footerLinksTwo} />
               <div className='order-1 mb-8 md:order-2 lg:mb-0'>
                 <h4 className='mb-6 text-sm font-medium'>Newsletter</h4>
-                <p className='text-sm'>
+                <p className='mb-1.5 text-sm'>
                   Subscribe for the <span className='font-bold'>latest</span>{" "}
                   updates!
                 </p>
-                <p className='mb-1.5 text-xs text-foreground/60 italic'>
-                  Unsubscribe any time.
-                </p>
+
                 <NewsletterForm />
 
-                <div className='hidden flex-row items-center gap-4 lg:mt-9 lg:flex'>
+                <div className='hidden flex-row items-center gap-4 text-shaded-foreground lg:mt-9 lg:flex'>
                   {socialData.map(({ id, title, href, className, Icon }) => (
                     <SocialIcon
                       key={id}
@@ -50,7 +48,7 @@ export default function LandingFooter() {
                       title={title}
                       href={href}
                       Icon={Icon}
-                      className={`size-4.5 lg:size-5 ${className ?? ""}`}
+                      className={`group transition-color size-4.5 text-shaded-foreground hover:text-link lg:size-5 ${className ?? ""}`}
                     />
                   ))}
                 </div>
@@ -62,7 +60,7 @@ export default function LandingFooter() {
           </div>
         </div>
 
-        <section className='flex flex-col flex-wrap items-center justify-center gap-4 border-t pt-8 pb-2 lg:flex-row lg:justify-between lg:gap-0 lg:px-8 xl:px-16 2xl:px-24'>
+        <section className='flex flex-col flex-wrap items-center justify-center gap-4 border-t pt-8 pb-2 text-shaded-foreground lg:flex-row lg:justify-between lg:gap-0 lg:px-8 xl:px-16 2xl:px-24'>
           <ul className='flex flex-wrap items-center gap-1 lg:gap-1.5'>
             {sharedFooterLinks.map(({ href, label, icon, external }, i) => (
               <li

@@ -75,7 +75,7 @@ export function NewsletterForm() {
       <form
         ref={formRef}
         action={formAction}
-        className='relative ml-[-5] flex w-full max-w-xs items-center rounded-full md:max-w-md lg:ml-[-6] lg:w-[18rem]'
+        className='relative ml-[-5] flex w-full max-w-xs flex-col items-center rounded-full md:max-w-md lg:ml-[-6] lg:w-[18rem]'
       >
         <label htmlFor='newsletter-email' className='sr-only'>
           Email address
@@ -83,28 +83,27 @@ export function NewsletterForm() {
         <Input
           type='email'
           placeholder='email@aol.com'
-          className='h-11 rounded-full pr-16 pl-4'
+          className='h-11 rounded-full border-2 border-shaded-foreground/70 bg-foreground/30 pr-16 pl-4 placeholder:text-shaded-foreground/60 dark:bg-transparent'
         />
         <button
           type='submit'
-          className='absolute top-1/2 right-0 -translate-y-1/2 bg-transparent p-4'
+          className='absolute top-1/2 right-0 -translate-y-1/2 bg-transparent px-4'
           aria-label='Subscribe to newsletter'
         >
           <AnimatedSendIcon
             animateOnHover
-            className='size-5 text-slate-900/80 hover:text-link'
+            className='size-5 text-shaded-foreground hover:text-primary'
           />
         </button>
-        {state.errors?.email && (
-          <p className='mt-1 ml-[-5] w-full max-w-xs text-xs text-wrap text-destructive md:max-w-md lg:ml-[-6] lg:w-[18rem]'>
-            {state.errors.email.join(", ")}
-          </p>
-        )}
       </form>
-
+      {state.errors?.email && (
+        <p className='mt-1.5 ml-[-5] w-full max-w-xs pl-2 text-xs leading-tight tracking-tight text-destructive md:max-w-md lg:ml-[-6] lg:w-[18rem]'>
+          {state.errors.email.join(", ")}
+        </p>
+      )}
       {state.message && (
         <p
-          className={`mt-2 ml-[-5] w-full max-w-xs text-xs text-wrap md:max-w-md lg:ml-[-6] lg:w-[18rem] ${
+          className={`mt-0.5 ml-[-5] w-full max-w-xs pl-2 text-xs leading-tight tracking-tight text-wrap md:max-w-md lg:ml-[-6] lg:w-[18rem] ${
             state.success ? "text-green-400" : "text-destructive"
           }`}
         >

@@ -12,7 +12,8 @@ import Divider from "@/app/(landing)/_components/divider";
 
 export default function LandingPage() {
   return (
-    <div className='bg-linear-90 from-[#00d2ff1a] to-[#ca66fb0d]'>
+    // <div className='bg-linear-90 from-[#00d2ff1a] to-[#ca66fb0d]'>
+    <div className='x'>
       <Hero />
       <About />
       <YouTube />

@@ -12,19 +12,14 @@ export default function useSmoothScroll() {
 
     const goingDown = distance > 0;
 
-    // Adaptive duration: ~0.5ms per px
     let effectiveDuration = duration ?? Math.abs(distance) * 0.5;
 
-    // Clamp differently depending on direction
     if (goingDown) {
-      // Slower minimum for short down scrolls
       effectiveDuration = Math.min(Math.max(effectiveDuration, 800), 1200);
     } else {
-      // Faster upwards feel, but not too slow
       effectiveDuration = Math.min(Math.max(effectiveDuration, 500), 1200);
     }
 
-    // Easing curve (easeInOutCubic)
     const easeInOutCubic = (t: number) =>
       t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 

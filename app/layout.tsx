@@ -5,6 +5,8 @@ import { ViewTransitions } from "next-view-transitions";
 import { ThemeProvider } from "@/app/_providers/theme";
 import { TooltipProvider } from "@/app/_providers/tooltip";
 import { Toaster } from "@/components/ui/sonner";
+// import { CookieBanner } from "@/components/shared/cookie-banner";
+// import Script from "next/script";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -20,8 +22,8 @@ const truculenta = Truculenta({
 });
 
 export const metadata: Metadata = {
-  title: "SBO25",
-  description: "SBO25",
+  title: "Sway Bae Official",
+  description: "Sway Bae Official",
 };
 
 export const viewport: Viewport = {
@@ -35,6 +37,24 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <ViewTransitions>
       <html lang='en' suppressHydrationWarning>
+        <head>
+          <meta name='apple-mobile-web-app-title' content='Sway Bae Official' />
+          {/* <Script
+            id='gtag-init'
+            strategy='afterInteractive'
+            dangerouslySetInnerHTML={{
+              __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('consent', 'default', {
+                'analytics_storage': 'denied'
+              });
+              gtag('js', new Date());
+              gtag('config', 'G-823SZT7XNY', { anonymize_ip: true });
+            `,
+            }}
+          /> */}
+        </head>
         <body
           className={`${poppins.variable} ${truculenta.variable} font-sans antialiased`}
         >
@@ -45,6 +65,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             disableTransitionOnChange
           >
             <TooltipProvider delayDuration={0}>{children}</TooltipProvider>
+            {/* <CookieBanner /> */}
             <Toaster richColors position='bottom-center' />
           </ThemeProvider>
         </body>

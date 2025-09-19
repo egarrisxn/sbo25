@@ -2,8 +2,6 @@
 //! SWITCH WITH use-calendar-events AFTER DEVELOPMENT
 //! -------------------------------------------------
 
-"use client";
-
 import { useState, useEffect } from "react";
 import type { CalendarEvent, UseCalendarEventsResult } from "@/lib/types";
 import { generateMockEvents } from "@/lib/data/mock"; // staticMockEvents

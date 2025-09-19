@@ -10,9 +10,7 @@ export function SocialIcon({ title, href, Icon, className }: Socials) {
     <Tooltip>
       <TooltipTrigger asChild>
         <a href={href} aria-label={title}>
-          <Icon
-            className={`${className} group text-muted-foreground transition-all hover:text-link`}
-          />
+          <Icon className={`${className} `} />
         </a>
       </TooltipTrigger>
       <TooltipContent>

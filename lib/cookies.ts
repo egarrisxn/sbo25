@@ -1,5 +1,3 @@
-"use client";
-
 export function getLocalStorage(key: string, defaultValue: any) {
   const storedValue = localStorage.getItem(key);
   if (storedValue !== null && storedValue !== undefined) {

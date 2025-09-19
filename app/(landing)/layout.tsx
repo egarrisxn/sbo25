@@ -5,7 +5,7 @@ import LandingFooter from "@/app/(landing)/_components/landing-footer";
 
 export default function LandingLayout({ children }: { children: ReactNode }) {
   return (
-    <div className='relative grid min-h-dvh w-full grid-rows-[auto_1fr_auto] overscroll-contain'>
+    <div className="relative grid min-h-dvh w-full grid-rows-[auto_1fr_auto] overscroll-contain bg-[url('/noisey.svg')] bg-repeat">
       <header className='fixed z-30 mx-auto flex w-full items-center bg-background/80 backdrop-blur-md'>
         <Navbar />
       </header>
